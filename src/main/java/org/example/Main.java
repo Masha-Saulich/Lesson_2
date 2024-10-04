@@ -11,15 +11,16 @@ public class Main {
             System.out.println(isSumInRange()); // Вывод результата метода;
             checkNumber();
             System.out.println(isNegative());   // Вывод результата метода;
-            printString();
+            printStringMultipleTimes("Привет, мир!", 5);
             isLeapYear();
             test10();
             test11 ();
             test12 ();
             test13 ();
-            test14 ();
+            test14 (4, 14);
         }
-        public static void printThreeWords() {
+
+       public static void printThreeWords() {
             System.out.println("Orange");
             System.out.println("Banana");
             System.out.println("Apple");
@@ -62,12 +63,10 @@ public class Main {
             int number = 450;
             return number < 0;
         }
-        public static void printString() {
-            String str = "Делаю очень долго";
-            int count = 3;
-            for (int a = 0; a < count; a++) {
-                System.out.println(str);
-            };
+        public static void printStringMultipleTimes(String text, int times) {
+        for (int i = 0; i < times; i++) {
+            System.out.println(text);  // Вывод строки
+        }
         }
         public static void isLeapYear() {
             int year = 2024;
@@ -93,7 +92,7 @@ public class Main {
             int[] arr = new int[100];
             System.out.print(Arrays.toString(arr));
             for (int i = 0; i < 100; i++) {
-                arr[i] = i;
+                arr[i] = i+1;
             }
             System.out.println(Arrays.toString(arr));
         }
@@ -116,9 +115,7 @@ public class Main {
                 pen[i][i] = 1;}
             System.out.println(Arrays.deepToString(pen));
         }
-        public static void test14 () {
-            int len = 4;
-            int initialValue = 14;
+        public static void test14 (int len, int initialValue) {
             int[] arr = new int [len];
             for (int i = 0; i < 4; i++) {
                 arr[i] = initialValue;
