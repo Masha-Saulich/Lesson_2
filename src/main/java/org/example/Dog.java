@@ -11,12 +11,11 @@ public class Dog extends Animal {
         return dogCount;
     }
 
-    @Override
+
         public void run(int distance) {
             System.out.println("Собака " + name + " пробежала " + distance + " м.");
         }
 
-        @Override
         public void swim(int distance) {
             System.out.println("Собака " + name + " проплыла " + distance + " м.");
         }

@@ -28,8 +28,8 @@ public class Main {
             new Cat("Барсик"),
             new Cat("Мурзик"),
             new Cat("Снежок"),
-            new Cat("Лаки"),
-            new Cat("Черныш")};
+            new Cat("Кузя"),
+            new Cat("Рыжик")};
 
         // Коты пытаются покушать
         for (Cat cat : cats) {
