@@ -1,7 +1,7 @@
 package org.example;
 
 public class MyArraySizeException extends Exception {
-    MyArraySizeException (String message){
+    public MyArraySizeException (String message){
         super(message);
     }
 }
