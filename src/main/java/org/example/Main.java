@@ -31,6 +31,18 @@ public class Main {
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
+        {
+            PhoneBook phoneBook = new PhoneBook();
+            phoneBook.addContact("Иванов", "+375-25-722-57-21");
+            phoneBook.addContact("Петров", "+375-29-722-57-22");
+            phoneBook.addContact("Иванов", "+375-29-722-57-23");
+            phoneBook.addContact("Сидоров", "+375-29-722-57-24");
+            System.out.println("Иванов:" + phoneBook.get("Иванов"));
+            System.out.println("Петров:" + phoneBook.get("Петров"));
+            System.out.println("Сидоров:" + phoneBook.get("Сидоров"));
+            System.out.println("Козлов:" + phoneBook.get("Козлов"));
+
+        }
     }
 
     private static Map<String, Integer> counWords(ArrayList<String> list) {
@@ -44,6 +56,22 @@ public class Main {
         }
         return map;
 
+    }
+
+    public static class PhoneBook {
+        private Map<String, List<String>> contacts;
+
+        public PhoneBook() {
+            contacts = new HashMap<>();
+        }
+
+        public void addContact(String name, String number) {
+            contacts.computeIfAbsent(name, key -> new ArrayList<>()).add(number);
+        }
+
+        public List<String> get(String name) {
+            return contacts.getOrDefault(name, new ArrayList<>());
+        }
     }
 }
 
