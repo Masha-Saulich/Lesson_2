@@ -7,25 +7,29 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 public class TestClass {
-    WebDriver driver = new ChromeDriver();
-
+    private WebDriver driver;
+    private HomePage HomePage;
 
     @BeforeEach
     public void initDriver() {
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\.cache\\selenium\\chromedriver\\win64\\130.0.6723.116\\chromedriver.exe");
+        driver = new ChromeDriver();
+        HomePage  = new HomePage(driver);
+
+
         driver.get("https://www.mts.by/");
         driver.manage().deleteAllCookies();
         driver.navigate().refresh();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        WebElement input = driver.findElement(By.id("cookie-agree"));
-        input.click();
+        HomePage.acceptCookie();
 
     }
 
     @Test
     @DisplayName("Проверка названия блока")
-    public void test() {
-        WebElement input = driver.findElement(By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/h2"));
-        Assertions.assertEquals(input.getText(), "Онлайн пополнение\nбез комиссии");
+    public void getBlockTitle() {
+        String actualTitle = HomePage.getBlockTitle();
+        Assertions.assertEquals("Онлайн пополнение\nбез комиссии", actualTitle);
 
     }
 
