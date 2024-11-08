@@ -19,9 +19,8 @@ public class HomePage {
         return driver.findElement(By.xpath("//*[@id=\"pay-section\"]/div/div/div[2]/section/div/h2")).getText();
     }
 
-    public String getLogoText(String
-                                      logoText) {
-        WebElement logo = driver.findElement(By.xpath("//img[@alt" + logoText + "]"));
+    public String getLogoText(String altText) {
+        WebElement logo = driver.findElement(By.xpath("//img[@alt='" + altText + "']"));
         return logo.getAttribute("alt");
     }
 
@@ -31,9 +30,9 @@ public class HomePage {
     }
 
     public void fillForm(String phone, String sum, String email) {
-        driver.findElement(By.id("connection-phone"));
-        driver.findElement(By.id("connection-sum"));
-        driver.findElement(By.id("connection-email"));
+        driver.findElement(By.id("connection-phone")).sendKeys(phone);
+        driver.findElement(By.id("connection-sum")).sendKeys(sum);
+        driver.findElement(By.id("connection-email")).sendKeys(email);
     }
 
     public void submitForm() {
