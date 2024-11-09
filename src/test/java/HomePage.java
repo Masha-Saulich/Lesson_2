@@ -1,6 +1,10 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 
 public class HomePage {
@@ -38,6 +42,21 @@ public class HomePage {
     public void submitForm() {
         WebElement submit = driver.findElement(By.xpath("//button[contains(@class, 'button') and contains(@class, 'button__default')]"));
         submit.click();
+    }
+
+    public String getPlaceholderByID(String elementID) {
+        WebElement input = driver.findElement(By.id(elementID));
+        return input.getAttribute("placeholder");
+    }
+
+    public void selectOptionFromDropdown(String selectClass, String optionText) {
+        WebElement input = driver.findElement(By.className(selectClass));
+        input.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//p[@class='select__option' and text()='" + optionText + "']")));
+        option.click();
+
     }
 }
 
