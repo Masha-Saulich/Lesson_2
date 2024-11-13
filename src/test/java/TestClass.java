@@ -30,6 +30,7 @@ public class TestClass {
                 .get("get")
                 .then()
                 .assertThat()
+                .statusCode(200)
                 .log().all();
     }
 
@@ -67,4 +68,42 @@ public class TestClass {
                 .body("form.foo2", Matchers.equalTo("bar2"));
 
 }
+    @Test
+    @DisplayName("PUT Request")
+    public void test3() {
+        given()
+                .baseUri("https://postman-echo.com/")
+               .contentType(ContentType.TEXT)
+               .when()
+                .body("This is expected to be sent back as part of response body.")
+               .put("put")
+                .then().assertThat()
+                .statusCode(200)
+                .log().body();
+    }
+    @Test
+    @DisplayName("PATCH Request")
+    public void test4() {
+        given()
+                .baseUri("https://postman-echo.com/")
+                .contentType(ContentType.TEXT)
+                .when()
+                .body("This is expected to be sent back as part of response body.")
+                .patch("patch")
+                .then().assertThat()
+                .statusCode(200)
+                .log().body();
+    }
+    @Test
+    @DisplayName("DELETE Request")
+    public void test5() {
+        given()
+               .baseUri("https://postman-echo.com/")
+               .when()
+                .body("This is expected to be sent back as part of response body.")
+               .delete("delete")
+               .then().assertThat()
+               .statusCode(200)
+               .log().body();
+    }
     }
