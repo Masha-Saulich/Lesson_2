@@ -50,7 +50,9 @@ public class ApiTest {
                         "    \"test\": \"value\"\n" +
                         "}")
                 .post("post")
-                .then().log().body();
+                .then()
+                .log().body()
+                .body("data.test", Matchers.equalTo("value"));
 
     }
 
@@ -71,9 +73,10 @@ public class ApiTest {
                         .then()
                         .assertThat()
                         .statusCode(200)
+                        .log().body()
                         .body("data.foo1", Matchers.equalTo("bar1"))
-                        .body("data.foo2", Matchers.equalTo("bar2"))
-                        .log().body();
+                        .body("data.foo2", Matchers.equalTo("bar2"));
+
 
             }
     @Test
@@ -87,7 +90,8 @@ public class ApiTest {
                .put("put")
                 .then().assertThat()
                 .statusCode(200)
-                .log().body();
+                .log().body()
+                .body("data", Matchers.equalTo("This is expected to be sent back as part of response body."));
     }
     @Test
     @DisplayName("PATCH Request")
@@ -100,7 +104,8 @@ public class ApiTest {
                 .patch("patch")
                 .then().assertThat()
                 .statusCode(200)
-                .log().body();
+                .log().body()
+                .body("data", Matchers.equalTo("This is expected to be sent back as part of response body."));
     }
     @Test
     @DisplayName("DELETE Request")
@@ -113,7 +118,8 @@ public class ApiTest {
                .delete("delete")
                .then().assertThat()
                .statusCode(200)
-               .log().body();
+               .log().body()
+                .body("data", Matchers.equalTo("This is expected to be sent back as part of response body."));
 
     }
           }
